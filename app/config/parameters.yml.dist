@@ -2,7 +2,7 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     symfony
+    database_name:     eZSc2014BasicCms
     database_user:     root
     database_password: ~
 
@@ -17,3 +17,11 @@ parameters:
     debug_toolbar:          true
     debug_redirects:        false
     use_assetic_controller: true
+
+    # DoctrinePHPCRBundle specific settings
+    phpcr_backend:
+        type: doctrinedbal
+        connection: default
+    phpcr_workspace: default
+    phpcr_user: admin
+    phpcr_pass: admin
