@@ -1,0 +1,6 @@
+Acme\BasicCmsBundle\Document\Page:
+    page0:
+        title: Home
+        content: |
+            Welcome to the homepage for this great CMS that I made at eZSummerCamp in
+            2014 in Croatia.
