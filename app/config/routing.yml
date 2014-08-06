@@ -1,0 +1,5 @@
+acme_basic_cms:
+    resource: "@AcmeBasicCmsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
