@@ -16,4 +16,28 @@ class DefaultController extends Controller
     {
         return array('name' => $name);
     }
+
+    /**
+     * @Template()
+     */
+    public function pageAction($contentDocument)
+    {
+        $dm = $this->get('doctrine_phpcr')->getManagerForClass('AcmeBasicCmsBundle:Post');
+        $posts = $dm->getRepository('AcmeBasicCmsBundle:Post')->findAll();
+
+        return array(
+            'page'  => $contentDocument,
+            'posts' => $posts,
+        );
+    }
+
+    /**
+     * @Template()
+     */
+    public function postAction($contentDocument)
+    {
+        return array(
+            'post'  => $contentDocument,
+        );
+    }
 }

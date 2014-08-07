@@ -86,6 +86,9 @@ cmf_routing:
         persistence:
             phpcr:
                 route_basepath: /cms/routes
+        controllers_by_class:
+            Acme\BasicCmsBundle\Document\Page: Acme\BasicCmsBundle\Controller\DefaultController::pageAction
+            Acme\BasicCmsBundle\Document\Post: Acme\BasicCmsBundle\Controller\DefaultController::postAction
 
 cmf_routing_auto:
     persistence:
