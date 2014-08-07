@@ -1,12 +1,24 @@
 {# src/Acme/BasicCmsBundle/Resources/views/Default/page.html.twig #}
 {% extends "AcmeBasicCmsBundle::layout.html.twig" %}
 {% block content %}
-<h1>{{ page.title }}</h1>
-<p>{{ page.content|raw }}</p>
-<h2>Our Blog Posts</h2>
-<ul>
+    <h1 class="page-header">
+        {{ page.title }}
+    </h1>
+
     {% for post in posts %}
-        <li><a href="{{ path(post) }}">{{ post.title }}</a></li>
+        <h2>
+            <a href="{{ path(post) }}">{{ post.title }}</a>
+        </h2>
+        <p class="lead">
+        by <a href="index.php">Me</a>
+        </p>
+        <p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.date.format('F jS, Y at G:i') }}</p>
+        <hr/ >
+        <p>
+        {{ post.content }}
+        </p>
+        <a class="btn btn-primary" href="{{ path(post) }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+        <hr>
     {% endfor %}
-</ul>
 {% endblock %}

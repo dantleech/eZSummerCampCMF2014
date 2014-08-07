@@ -1,0 +1,32 @@
+/*!
+ * Start Bootstrap - Blog Home HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.header {
+    background-repeat: no-repeat;
+}
+
+.header-left, .header-right {
+    background-repeat: no-repeat;
+    height: 110px;
+}
+
+.header-left {
+    background-image: url(/images/logo.svg);
+}
+
+.header-right {
+    background-image: url(/images/cmflogo.png);
+    background-position: 125px;
+    text-align: right;
+}
+
+footer {
+    margin: 50px 0;
+}
