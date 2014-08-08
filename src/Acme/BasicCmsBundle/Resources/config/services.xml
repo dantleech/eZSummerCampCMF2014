@@ -46,5 +46,23 @@
             <argument/>
             <argument>Acme\BasicCmsBundle\Document\Post</argument>
             <argument>SonataAdminBundle:CRUD</argument>
-        </service>    </services>
+        </service>
+
+        <service
+            id="acme.basic_cms.menu_provider"
+            class="Symfony\Cmf\Bundle\MenuBundle\Provider\PhpcrMenuProvider">
+            <argument type="service" id="cmf_menu.factory"/>
+            <argument type="service" id="doctrine_phpcr"/>
+            <argument>/cms/pages</argument>
+            <call method="setRequest">
+                <argument
+                    type="service"
+                    id="request"
+                    on-invalid="null"
+                    strict="false"
+                />
+            </call>
+            <tag name="knp_menu.provider" />
+        </service>
+    </services>
 </container>

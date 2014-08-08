@@ -19,12 +19,16 @@ class LoadData implements FixtureInterface
     protected function loadPageData(ObjectManager $dm)
     {
         $parent = $dm->find(null, '/cms/pages');
+        $rootPage = new Page();
+        $rootPage->setTitle('main');
+        $rootPage->setParentDocument($parent);
+        $dm->persist($rootPage);
 
         $fixtureLoader = new Yaml();
         $documents = $fixtureLoader->load(__DIR__.'/data/pages.yml');
 
         foreach ($documents as $document) {
-            $document->setParentDocument($parent);
+            $document->setParentDocument($rootPage);
             $dm->persist($document);
         }
 
