@@ -4,7 +4,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -86,6 +86,7 @@ cmf_routing:
         persistence:
             phpcr:
                 route_basepath: /cms/routes
+                use_sonata_admin: false
         controllers_by_class:
             Acme\BasicCmsBundle\Document\Page: Acme\BasicCmsBundle\Controller\DefaultController::pageAction
             Acme\BasicCmsBundle\Document\Post: Acme\BasicCmsBundle\Controller\DefaultController::postAction
@@ -94,3 +95,10 @@ cmf_routing_auto:
     persistence:
         phpcr:
             enabled: true
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
