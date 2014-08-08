@@ -4,3 +4,12 @@ Acme\BasicCmsBundle\Document\Page:
         content: |
             Welcome to the homepage for this great CMS that I made at eZSummerCamp in
             2014 in Croatia.
+    page1:
+        title: Symfony CMF
+        content: <paragraph()>
+    page2:
+        title: Sonata Admin
+        content: <paragraph()>
+    page3:
+        title: Puppies
+        content: <paragraph()>
