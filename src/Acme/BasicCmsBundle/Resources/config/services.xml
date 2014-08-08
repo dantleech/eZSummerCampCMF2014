@@ -7,17 +7,8 @@
 
     <services>
 
-        <service id="acme_basiccms.basic_cms.phpcr.initializer"
-            class="Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer">
-
-            <argument>My custom initializer</argument>
-
-            <argument type="collection">
-                <argument>/cms/pages</argument>
-                <argument>/cms/posts</argument>
-                <argument>/cms/routes</argument>
-            </argument>
-
+        <service id="acme_basiccms.phpcr.initializer.site"
+            class="Acme\BasicCmsBundle\Initializer\SiteInitializer">
             <tag name="doctrine_phpcr.initializer"/>
         </service>
 

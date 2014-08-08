@@ -9,12 +9,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
-     * @Template()
+     * @Route("/")
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $site = $dm->find('Acme\BasicCmsBundle\Document\Site', '/cms');
+        $homepage = $site->getHomepage();
+
+        if (!$homepage) {
+            throw $this->createNotFoundException('No homepage configured');
+        }
+
+        return $this->forward('AcmeBasicCmsBundle:Default:page', array(
+            'contentDocument' => $homepage
+        ));
     }
 
     /**
@@ -39,5 +48,32 @@ class DefaultController extends Controller
         return array(
             'post'  => $contentDocument,
         );
+    }
+
+    /**
+     * @Route(
+     *   name="make_homepage",
+     *   pattern="/_cms/make_homepage/{id}",
+     *   requirements={"id": ".+"}
+     * )
+     */
+    public function makeHomepageAction($id)
+    {
+        $dm = $this->get('doctrine_phpcr')->getManager();
+
+        $site = $dm->find(null, '/cms');
+        if (!$site) {
+            throw $this->createNotFoundException('Could not find /cms document!');
+        }
+
+        $page = $dm->find(null, $id);
+
+        $site->setHomepage($page);
+        $dm->persist($page);
+        $dm->flush();
+
+        return $this->redirect($this->generateUrl('admin_acme_basiccms_page_edit', array(
+            'id' => $page->getId()
+        )));
     }
 }
