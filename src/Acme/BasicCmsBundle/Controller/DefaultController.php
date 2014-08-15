@@ -5,6 +5,7 @@ namespace Acme\BasicCmsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -75,5 +76,41 @@ class DefaultController extends Controller
         return $this->redirect($this->generateUrl('admin_acme_basiccms_page_edit', array(
             'id' => $page->getId()
         )));
+    }
+
+    /**
+     * @Route(
+     *   name="search",
+     *   pattern="/_cms/search"
+     * )
+     * @Template()
+     */
+    public function searchAction(Request $request)
+    {
+        $query = $request->get('query');
+
+
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $qb = $dm->createQueryBuilder();
+        $qb->fromDocument('Acme\BasicCmsBundle\Document\Post', 'p')
+            ->where()
+                ->orX()
+                    ->fullTextSearch('p.title', $query)
+                    ->fullTextSearch('p.content', $query)
+                ->end()
+            ->end();
+            // if you have jackrabbit ..
+            // ->orderBy()
+            //     ->desc()
+            //         ->fullTextSearchScore('p')
+            //     ->field
+            // ->end();
+
+        $results = $qb->getQuery()->execute();
+
+        return array(
+            'results' => $results,
+            'query' => $query,
+        );
     }
 }

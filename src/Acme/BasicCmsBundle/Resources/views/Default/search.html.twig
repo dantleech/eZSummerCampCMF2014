@@ -1,0 +1,19 @@
+{# src/Acme/BasicCmsBundle/Resources/views/Default/page.html.twig #}
+{% extends "AcmeBasicCmsBundle::layout.html.twig" %}
+{% block content %}
+<h4>Showing <b>{{ results|length }}</b> result(s) for query "<b>{{ query }}</b>":</h4>
+    {% set i = 1 %}
+    {% for post in results %}
+        <h2>
+            {{ i }}. <a href="{{ path(post) }}">{{ post.title }}</a>
+        </h2>
+        <p>
+        {{ post.content }}
+        </p>
+
+        <hr>
+        {% set i = i + 1 %}
+    {% else %}
+        <p class="hero">No results</p>
+    {% endfor %}
+{% endblock %}
