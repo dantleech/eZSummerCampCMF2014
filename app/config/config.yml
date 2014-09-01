@@ -88,6 +88,9 @@ cmf_routing:
                 route_basepath: /cms/routes
                 use_sonata_admin: false
 
+        controllers_by_class:
+            Acme\BasicCmsBundle\Document\Page: Acme\BasicCmsBundle\Controller\DefaultController::pageAction
+
 
 cmf_routing_auto:
     persistence:
