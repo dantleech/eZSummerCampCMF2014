@@ -22,7 +22,7 @@ class DefaultController extends Controller
      */
     public function pageAction($contentDocument)
     {
-        $dm = $this->get('doctrine_phpcr')->getManagerForClass('AcmeBasicCmsBundle:Post');
+        $dm = $this->get('doctrine_phpcr')->getManager();
         $posts = $dm->getRepository('AcmeBasicCmsBundle:Post')->findAll();
 
         return array(

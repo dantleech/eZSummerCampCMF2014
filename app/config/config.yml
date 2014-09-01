@@ -126,3 +126,6 @@ sonata_doctrine_phpcr_admin:
                 - Acme\BasicCmsBundle\Document\Post
         Acme\BasicCmsBundle\Document\Post:
             valid_children: []
+
+knp_menu:
+    twig: true
