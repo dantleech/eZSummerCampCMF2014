@@ -81,5 +81,10 @@
             </call>
             <tag name="knp_menu.provider" />
         </service>
+
+        <service id="acme_basiccms.phpcr.initializer.site"
+            class="Acme\BasicCmsBundle\Initializer\SiteInitializer">
+            <tag name="doctrine_phpcr.initializer"/>
+        </service>
     </services>
 </container>

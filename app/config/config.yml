@@ -121,6 +121,9 @@ sonata_doctrine_phpcr_admin:
         Doctrine\ODM\PHPCR\Document\Generic:
             valid_children:
                 - all
+        Acme\BasicCmsBundle\Document\Site:
+            valid_children:
+                - all
         Acme\BasicCmsBundle\Document\Page:
             valid_children:
                 - Acme\BasicCmsBundle\Document\Post
